@@ -12,11 +12,10 @@ async def _(event):
         return
     while True:
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        PT = LT.strftime("%d.%m.%y")
-        OT = LT.strftime("%H:%M")
-        name = f"root@ayush[{PT} {OT}]~#"    
+        OT = LT.strftime("%H:%M:%S")
+        name = f"root@localhost[{OT}]~$"    
         await bot(UpdateProfileRequest(first_name=name))
-        await asyncio.sleep(60)
+        await asyncio.sleep(1)
 
 CMD_HELP.update({
 "autoname":
