@@ -20,6 +20,6 @@ async def _(event):
             pass
 
 CMD_HELP.update({
-"dice"
+"dice":
 "Module to show a rolling dice with random number"
 })
