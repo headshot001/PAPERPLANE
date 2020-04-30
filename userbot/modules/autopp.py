@@ -8,7 +8,10 @@ AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/88ab9a1b1243f2c1002
 import asyncio
 import shutil
 import pytz 
-FONT_FILE_TO_USE = os.environ.get("FONT_FILE_TO_USE", "https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf")
+import urllib.request
+url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
+urllib.request.urlretrieve(url, './Antaro.ttf')
+FONT_FILE_TO_USE = "./Antaro.ttf"
 
 @register(outgoing=True, pattern="^.autopp$")
 async def autopic(event):
@@ -28,7 +31,7 @@ async def autopic(event):
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 35)
-        drawn_text.text((200, 250), OT, font=fnt, align=”left”, fill ="white")
+        drawn_text.text((5, 5), OT, font=fnt, align="left")
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
