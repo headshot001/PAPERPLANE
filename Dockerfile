@@ -60,6 +60,7 @@ RUN mkdir /app/bin
 WORKDIR /app
 ENV PATH="/app/bin:$PATH"
 RUN pip install --upgrade pip
+RUN pip install --upgrade wheel
 RUN pip install --upgrade -r requirements.txt
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
 CMD ["bash","init/start.sh"]
