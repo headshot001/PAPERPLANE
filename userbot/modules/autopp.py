@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.tl import functions
 from userbot.events import register
-AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/88ab9a1b1243f2c100296.jpg")
+AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/f25d496cabbb96d4ec1d6.png")
 import asyncio
 import shutil
 import pytz 
@@ -36,7 +36,7 @@ async def autopic(event):
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 35)
-        drawn_text.text((5, 5), OT, font=fnt, align="left", fill="red")
+        drawn_text.text((200, 300), OT, font=fnt, align="left", fill="red")
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
