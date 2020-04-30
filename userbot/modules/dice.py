@@ -1,6 +1,7 @@
 from telethon.tl.types import InputMediaDice
 from userbot.events import register
 from random import randrange
+from userbot import CMD_HELP
 
 @register(outgoing=True, pattern="^.dice$")
 async def _(event):
