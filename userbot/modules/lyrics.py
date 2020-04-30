@@ -77,6 +77,6 @@ async def lyrics(lyr):
 	return
 
 CMD_HELP.update({
-"lyrics"
-"Module to search for song lyrics/nPATTERN : `.song singer(optional) songname`
+"lyrics":
+"Module to search for song lyrics\nPATTERN : `.song singer(optional) songname`"
 })
