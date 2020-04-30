@@ -1,7 +1,6 @@
 import asyncio
 import datetime
 import time
-from telethon.errors import FloodWaitError
 from userbot import bot, CMD_HELP
 from telethon.tl.functions.account import UpdateProfileRequest
 from userbot.events import register
