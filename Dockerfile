@@ -6,13 +6,7 @@ RUN apk add --no-cache --update \
     g++ \
     freetype-dev \
     python3 \
-    bash
-RUN python3 -m ensurepip \
-    && pip install --upgrade pip setuptools \
-    && rm -r /usr/lib/python*/ensurepip && \
-    if [ ! -e /usr/bin/pip ]; then ln -s pip /usr/bin/pip ; fi && \
-    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
-    rm -rf /root/.cache
+    sh
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 RUN mkdir /app/bin
 WORKDIR /app
