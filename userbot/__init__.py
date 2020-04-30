@@ -91,7 +91,8 @@ GDRIVE_FOLDER = os.environ.get("GDRIVE_FOLDER", None)
 
 HEROKU_APIKEY = os.environ.get("HEROKU_APIKEY", None)
 HEROKU_APPNAME = os.environ.get("HEROKU_APPNAME", None)
-
+GENIUS_API = os.environ.get("GENIUS_API", None)
+LYDIA_API_KEY = os.environ.get("LYDIA_API_KEY", None)
 # pylint: disable=invalid-name
 if STRING_SESSION:
     bot = TelegramClient(StringSession(STRING_SESSION), API_KEY, API_HASH)
