@@ -1,5 +1,8 @@
+# PLUGIN RE-ESTABLISHED BY @AyushChatterjee, Original Creator is @Spechide
+
 import os
-from datetime import datetime
+import datetime
+import time
 from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.tl import functions
@@ -9,6 +12,7 @@ import asyncio
 import shutil
 import pytz 
 import urllib.request
+from userbot import bot, CMD_HELP
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
 urllib.request.urlretrieve(url, './Antaro.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
@@ -27,11 +31,11 @@ async def autopic(event):
         im = Image.open(photo)
         file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        OT = LT.strftime("root@ayush~$ python3\n>>>import datetime\n\n>>>localtime=datetime.datetime.now()\nprint (local)\n\n>>>%d.%m.%y %H:%M:%S")
+        OT = LT.strftime("root@ayush~$ python3\n>>>import datetime\n\n>>>localtime=datetime.datetime.now()\n>>>print (local)\n\n>>>%d.%m.%y %H:%M:%S")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 35)
-        drawn_text.text((5, 5), OT, font=fnt, align="left")
+        drawn_text.text((200, 250), OT, font=fnt, align="left")
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
