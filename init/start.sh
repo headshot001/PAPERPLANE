@@ -5,6 +5,6 @@
 # you may not use this file except in compliance with the License.
 #
 
-apt install redis-server -y
+apt-get update && add-apt-repository universe && apt-get install -y redis-server
 redis-server --daemonize yes
 python3 -m userbot
