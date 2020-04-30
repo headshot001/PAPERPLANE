@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.tl import functions
 from userbot.events import register
-AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/88ab9a1b1243f2c100296.jpg")
+AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/732a3f7c20bea1ab6c498.jpg")
 import asyncio
 import shutil
 import pytz 
@@ -32,11 +32,11 @@ async def autopic(event):
         im = Image.open(photo)
         file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        OT = LT.strftime("root@ayush~# python3\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n>>>print(localtime)\n\n>>>%d.%m.%y %H:%M")
+        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>print(localtime)\n\n>>>%d.%m.%y %H:%M")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 35)
-        drawn_text.text((300, 350), OT, font=fnt, fill="green")
+        drawn_text.text((300, 350), OT, font=fnt, fill="yellow")
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
