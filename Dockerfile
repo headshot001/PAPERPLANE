@@ -1,12 +1,11 @@
 FROM alpine:edge
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
-RUN apk add --no-cache --update \
+RUN apk add --no-cache=true --update \
     jpeg-dev \
     g++ \
     freetype-dev \
-    python3 \
-    sh
+    python3 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 RUN mkdir /app/bin
 WORKDIR /app
