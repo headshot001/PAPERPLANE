@@ -12,7 +12,8 @@ import asyncio
 import shutil
 import pytz 
 import urllib.request
-from userbot import bot, CMD_HELP
+from telethon import events
+from userbot import CMD_HELP
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
 urllib.request.urlretrieve(url, './Antaro.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
@@ -47,3 +48,9 @@ async def autopic(event):
             await asyncio.sleep(60)
         except:
             return
+
+
+CMD_HELP.update({
+"autoname":
+"A module to show a runnig timer in the user profile picture"
+})
