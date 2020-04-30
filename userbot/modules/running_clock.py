@@ -23,6 +23,6 @@ async def _(event):
         await asyncio.sleep(1)
 
 CMD_HELP.update({
-".runclock":
+"runclock":
 "Module to show running clock in telegram"
 })
