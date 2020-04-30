@@ -140,15 +140,14 @@ async def amireallyalive(alive):
     else:
         db = "Databases functioning normally!"
     await alive.edit("`"
-                     "Paperplane is alive! Your bot is running \n\n"
+                     "PAPERPLANE-REBORN is running \n\n"
                      f"Telethon version: {version.__version__} \n"
                      f"Python: {python_version()} \n"
                      f"User: {DEFAULTUSER} \n"
                      f"Database status: {db}\n"
-                     f"Tagged bot version: v1.0"
-                     "`")
-
-
+                     "`"
+                     "`My Creator` : @AyushChatterjee"
+                     )
 @register(outgoing=True, pattern="^.aliveu")
 async def amireallyaliveuser(username):
     """ For .aliveu command, change the username in the .alive command. """
