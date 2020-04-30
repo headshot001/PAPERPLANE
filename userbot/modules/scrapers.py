@@ -38,7 +38,7 @@ async def img_sampler(event):
         lim = lim.replace("lim=", "")
         query = query.replace("lim=" + lim[0], "")
     except IndexError:
-        lim = 2
+        lim = 10
     response = google_images_download.googleimagesdownload()
 
     # creating list of arguments
@@ -79,7 +79,7 @@ async def gsearch(q_event):
     googsearch = GoogleSearch()
     gresults = await googsearch.async_search(*search_args)
     msg = ""
-    for i in range(1, 6):
+    for i in range(1, 10):
         try:
             title = gresults["titles"][i]
             link = gresults["links"][i]
