@@ -1,13 +1,10 @@
 import asyncio
 import datetime
 import time
-from telethon.errors import FloodWaitError
 from userbot import bot, CMD_HELP
 from telethon.tl.functions.account import UpdateProfileRequest
 from userbot.events import register
 import pytz
-
-DEL_TIME_OUT = 60
 
 @register(outgoing=True, pattern="^.autoname")
 async def _(event):
@@ -17,14 +14,10 @@ async def _(event):
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
         PT = LT.strftime("%d.%m.%y")
         OT = LT.strftime("%H:%M")
-        name = f"root@ayush[{PT} {OT}]~#"
-        try:
-            await bot(UpdateProfileRequest(first_name=name))
-        except FloodWaitError as ex:
-            await asyncio.sleep(ex.seconds)
-        await asyncio.sleep(DEL_TIME_OUT)
+        name = f"root@ayush[{PT} {OT}]~#"    
+        await bot(UpdateProfileRequest(first_name=name))
+        await asyncio.sleep(60)
 
-        
 CMD_HELP.update({
 "autoname":
 "A module to show a last seen timer in the userbio"
