@@ -8,7 +8,7 @@ RUN apk add --no-cache=true --update \
     python3 \
     git \
     bash \
-    sudo \
+    sudo 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 RUN mkdir /app/bin
 WORKDIR /app
