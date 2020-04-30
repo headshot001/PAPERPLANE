@@ -7,7 +7,7 @@ from userbot.events import register
 AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/88ab9a1b1243f2c100296.jpg")
 import asyncio
 import shutil
-FONT_FILE_TO_USE = "/app/dAntaro.ttf"
+FONT_FILE_TO_USE = "/app/Antaro.ttf"
 
 @register(outgoing=True, pattern="^.autopp$")
 async def autopic(event):
