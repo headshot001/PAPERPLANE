@@ -7,11 +7,12 @@ from userbot.events import register
 AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/88ab9a1b1243f2c100296.jpg")
 import asyncio
 import shutil
-FONT_FILE_TO_USE = "/app/Antaro.ttf"
+import pytz 
+FONT_FILE_TO_USE = os.environ.get("FONT_FILE_TO_USE", "https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf")
 
 @register(outgoing=True, pattern="^.autopp$")
 async def autopic(event):
-    downloaded_file_name = "./PAPERPLANE/original_pic.png"
+    downloaded_file_name = "./original_pic.png"
     downloader = SmartDL(AUTO_PP, downloaded_file_name, progress_bar=True)
     downloader.start(blocking=False)
     photo = "photo_pfp.png"
@@ -22,11 +23,12 @@ async def autopic(event):
         shutil.copy(downloaded_file_name, photo)
         im = Image.open(photo)
         file_test = im.rotate(counter, expand=False).save(photo, "PNG")
-        current_time = datetime.now().strftime("DATE : %d.%m.%y\nTIME : %H:%M:%S")
+        LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
+        OT = LT.strftime("root@ayush~$ python3\n>>>import datetime\n\n>>>localtime=datetime.datetime.now()\nprint (local)\n\n>>>%d.%m.%y %H:%M:%S")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 35)
-        drawn_text.text((200, 250), current_time, font=fnt, fill=(255, 255, 0))
+        drawn_text.text((200, 250), OT, font=fnt, align=”left”, fill ="white")
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
