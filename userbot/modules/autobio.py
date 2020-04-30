@@ -20,9 +20,7 @@ async def _(event):
         name = f"Last seen at {PT} {OT}"
         try:
             await bot(UpdateProfileRequest(about=name))
-        except FloodWaitError as ex:
-            await asyncio.sleep(ex.seconds)
-        await asyncio.sleep(DEL_TIME_OUT)
+            await asyncio.sleep(DEL_TIME_OUT)
 
         
 CMD_HELP.update({
