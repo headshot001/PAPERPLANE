@@ -5,7 +5,10 @@ RUN apk add --no-cache=true --update \
     jpeg-dev \
     g++ \
     freetype-dev \
-    python3 
+    python3 \
+    git \
+    bash \
+    sudo \
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 RUN mkdir /app/bin
 WORKDIR /app
