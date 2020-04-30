@@ -3,7 +3,7 @@ RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/r
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 RUN apk add --no-cache --update \
     jpeg-dev \
-    g++
+    g++ \
     freetype-dev
 RUN python3 -m ensurepip \
     && pip3 install --upgrade pip setuptools \
