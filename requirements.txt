@@ -36,3 +36,4 @@ pySmartDL
 youtube-dl
 coffeehouse
 pyfiglet
+heroku3
