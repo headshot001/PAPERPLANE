@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.tl import functions
 from userbot.events import register
-AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/f25d496cabbb96d4ec1d6.png")
+AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/88ab9a1b1243f2c100296.jpg")
 import asyncio
 import shutil
 import pytz 
