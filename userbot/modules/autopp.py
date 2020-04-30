@@ -31,7 +31,7 @@ async def autopic(event):
         im = Image.open(photo)
         file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        OT = LT.strftime("root@ayush~$ python3\n>>>import datetime\n\n>>>localtime=datetime.datetime.now()\n>>>print (local)\n\n>>>%d.%m.%y %H:%M:%S")
+        OT = LT.strftime("root@ayush~$ python3\n>>>import datetime\n\n>>>localtime=datetime.datetime.now()\n>>>print (local)\n\n>>>%d.%m.%y %H:%M")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 35)
