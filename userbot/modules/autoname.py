@@ -20,7 +20,9 @@ async def _(event):
         name = f"root@ayush[{PT} {OT}]~#"
         try:
             await bot(UpdateProfileRequest(first_name=name))
-            await asyncio.sleep(DEL_TIME_OUT)
+        except FloodWaitError as ex:
+            await asyncio.sleep(ex.seconds)
+        await asyncio.sleep(DEL_TIME_OUT)
 
         
 CMD_HELP.update({
