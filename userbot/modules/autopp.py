@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.tl import functions
 from userbot.events import register
-AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/f91f6066d72ca7ef83249.jpg")
+AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/bd2d8bae73546db5719db.jpg")
 import asyncio
 import shutil
 import pytz 
@@ -32,7 +32,7 @@ async def autopic(event):
         im = Image.open(photo)
         file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True :\n\n>>>     print(' ',localtime)\n\n>>>     print(' ','HAVE A NICE DAY !')\n\n>>>else :\n\n>>>     break\n\n>>> %d.%m.%y %H:%M\n\n>>> HAVE A NICE DAY !")
+        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True :\n\n...     print(' ',localtime)\n\n...     print(' ','HAVE A NICE DAY !')\n\n...else :\n\n...     break\n\n>>> %d.%m.%y %H:%M\n\n>>> HAVE A NICE DAY !")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 25)
