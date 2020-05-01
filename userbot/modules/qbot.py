@@ -26,6 +26,7 @@ async def new_event(event):
              await event.client.send_message(event.chat_id, response.message)
 
 
+
 CMD_HELP.update({
 ".": 
 "A module to create a sticker from a text in reply\nWARNING : @Quotlybot should not be in the chat where you are using this plugin else it may cause errors !\nJust type .qbot and the message you wanna convert to sticklet"
