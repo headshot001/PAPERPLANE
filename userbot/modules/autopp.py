@@ -32,7 +32,7 @@ async def autopic(event):
         im = Image.open(photo)
         file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True:\n\n   print(localtime)\n\nexcept KeyboardInterrupt:\n\n   break\n\n>>>%d.%m.%y %H:%M")
+        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True:\n\n>>>   print('',localtime)\n\n>>>   print('','HAVE A NICE DAY !')>>>except KeyboardInterrupt:\n\n>>>   break\n\n>>> %d.%m.%y %H:%M\n\n>>> HAVE A NICE DAY !")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 25)
