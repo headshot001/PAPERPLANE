@@ -32,11 +32,11 @@ async def autopic(event):
         im = Image.open(photo)
         file_test = im.rotate(counter, expand=False).save(photo, "PNG")
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True:\n\n>>>     print('',localtime)\n\n>>>     print('','HAVE A NICE DAY !')\n\n>>>except KeyboardInterrupt:\n\n>>>     break\n\n>>> %d.%m.%y %H:%M\n\n>>> HAVE A NICE DAY !")
+        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True :\n\n>>>     print('',localtime)\n\n>>>     print('','HAVE A NICE DAY !')\n\n>>>else :\n\n>>>     break\n\n>>> %d.%m.%y %H:%M\n\n>>> HAVE A NICE DAY !")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 25)
-        drawn_text.text((40, 80), OT, font=fnt, fill="red")
+        drawn_text.text((40, 80), OT, font=fnt, fill="yellow")
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
