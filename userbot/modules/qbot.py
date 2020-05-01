@@ -5,7 +5,7 @@ from telethon.tl.functions.account import UpdateNotifySettingsRequest
 from userbot.events import register
 from userbot import CMD_HELP
 
-@register(outgoing=True, pattern="^. (.*)")
+@register(outgoing=True, pattern=".qbot (.*)")
 async def new_event(event):
     if event.fwd_from:
         return 
@@ -28,5 +28,5 @@ async def new_event(event):
 
 CMD_HELP.update({
 ".": 
-"A module to create a sticker from a text in reply\nWARNING : @Quotlybot should not be in the chat where you are using this plugin else it may cause errors !\nJust type . and the message you wanna convert to sticklet"
+"A module to create a sticker from a text in reply\nWARNING : @Quotlybot should not be in the chat where you are using this plugin else it may cause errors !\nJust type .qbot and the message you wanna convert to sticklet"
 })
