@@ -16,7 +16,7 @@ from telethon import events
 from userbot import CMD_HELP
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/fontfile.ttf'
 urllib.request.urlretrieve(url, './fontfile.ttf')
-FONT_FILE_TO_USE = "./Antaro.ttf"
+FONT_FILE_TO_USE = "./fontfile.ttf"
 
 @register(outgoing=True, pattern="^.autopp$")
 async def autopic(event):
