@@ -7,15 +7,15 @@ from PIL import Image, ImageDraw, ImageFont
 from pySmartDL import SmartDL
 from telethon.tl import functions
 from userbot.events import register
-AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/bd2d8bae73546db5719db.jpg")
+AUTO_PP = os.environ.get("AUTO_PP", "https://telegra.ph/file/d3048ee6593a0bcb327a3.png")
 import asyncio
 import shutil
 import pytz 
 import urllib.request
 from telethon import events
 from userbot import CMD_HELP
-url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/fontfile.txt'
-urllib.request.urlretrieve(url, './fontfile.txt')
+url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/fontfile.ttf'
+urllib.request.urlretrieve(url, './fontfile.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
 
 @register(outgoing=True, pattern="^.autopp$")
@@ -36,7 +36,7 @@ async def autopic(event):
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 25)
-        drawn_text.text((40, 80), OT, font=fnt, fill="yellow")
+        drawn_text.text((40, 80), OT, font=fnt, fill="black")
         img.save(photo)
         file = await event.client.upload_file(photo)  # pylint:disable=E0602
         try:
