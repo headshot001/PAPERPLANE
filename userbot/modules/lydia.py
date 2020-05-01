@@ -59,3 +59,8 @@ async def user(event):
             await event.reply(text_rep)
     except (KeyError, TypeError):
         return
+
+CMD_HELP.update({
+"autochat":
+"use .autochat command in reply to someone's text to randomly talk to them like a bot"
+})
