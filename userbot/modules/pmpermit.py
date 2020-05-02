@@ -235,7 +235,7 @@ async def permitpm(event):
             if not is_mongo_alive() or not is_redis_alive():
                 return
             apprv = await approval(event.chat_id)
-
+            await event.edit("`You have been disapproved to PM by my Master`")
             # This part basically is a sanity check
             # If the message that sent before is Unapproved Message
             # then stop sending it again to prevent FloodHit
@@ -297,10 +297,8 @@ async def permitpm(event):
 
 CMD_HELP.update({
     "pmpermit":
-    ".approve\n"
-    "Usage: Approve the mentioned/replied person to PM."
-    ".disapprove\n":
-    "Usage: Disapprove the mentioned/replied person to PM."
+    ".approve\n.disapprove\n"
+    ".approve: Approve the mentioned/replied person to PM\n.disapprove: Disapprove the mentioned/replied person to PM"
 })
 
 CMD_HELP.update(
