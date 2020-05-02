@@ -105,6 +105,19 @@
         "GDRIVE_FOLDER": {
             "description": "Google Drive upload folder.",
             "required": false
+        },
+        "WELCOME_MUTE": {
+            "description": "Detect and mute spambots which match the Paperplane algorithm after they join a group",
+            "required": false
+        },
+        "LYDIA_API_KEY": {
+            "description": "Required for Lydia functionality",
+            "required": false
+        },
+        "GENIUS_API": {
+            "description": "Required for .lyrics command",
+            "required": false
+      
         }
     }
 }
