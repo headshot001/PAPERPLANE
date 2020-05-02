@@ -299,7 +299,7 @@ CMD_HELP.update({
     "pmpermit":
     ".approve\n"
     "Usage: Approve the mentioned/replied person to PM."
-    ".disapprove":
+    ".disapprove\n":
     "Usage: Disapprove the mentioned/replied person to PM."
 })
 
