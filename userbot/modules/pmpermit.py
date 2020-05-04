@@ -92,8 +92,8 @@ async def permitpm(event):
                             BOTLOG_CHATID,
                             "[" + name0 + "](tg://user?id=" +
                             str(event.chat_id) + ")" +
-                            " was just another retarded nibba")
-                        
+                            " was just another retarded nibba",
+                        )
 
 
 @register(disable_edited=True, outgoing=True, disable_errors=True)
@@ -226,79 +226,11 @@ async def unblockpm(unblock):
             " was unblocc'd!.",
         )
 
-@register(outgoing=True, pattern="^.disapprove$")
-async def permitpm(event):
-    """ Permits people from PMing you without approval. \
-        Will block retarded nibbas automatically. """
-    if PM_AUTO_BAN:
-        if event.is_private and not (await event.get_sender()).bot:
-            if not is_mongo_alive() or not is_redis_alive():
-                return
-            apprv = await approval(event.chat_id)
-            await event.edit("`You have been disapproved to PM by my Master`")
-            # This part basically is a sanity check
-            # If the message that sent before is Unapproved Message
-            # then stop sending it again to prevent FloodHit
-            if not apprv and event.text != UNAPPROVED_MSG:
-                if event.chat_id in LASTMSG:
-                    prevmsg = LASTMSG[event.chat_id]
-                    # If the message doesn't same as previous one
-                    # Send the Unapproved Message again
-                    if event.text != prevmsg:
-                        # Searches for previously sent UNAPPROVED_MSGs
-                        async for message in event.client.iter_messages(
-                                event.chat_id,
-                                from_user='me',
-                                search=UNAPPROVED_MSG):
-                            # ... and deletes them !!
-                            await message.delete()
-                        await event.reply(UNAPPROVED_MSG)
-                    LASTMSG.update({event.chat_id: event.text})
-                else:
-                    await event.reply(UNAPPROVED_MSG)
-                    LASTMSG.update({event.chat_id: event.text})
-
-                if await notif_state() is False:
-                    await event.client.send_read_acknowledge(event.chat_id)
-                if event.chat_id not in COUNT_PM:
-                    COUNT_PM.update({event.chat_id: 1})
-                else:
-                    COUNT_PM[event.chat_id] = COUNT_PM[event.chat_id] + 1
-
-                if COUNT_PM[event.chat_id] > 4:
-                    await event.respond("`You were spamming my master's PM, "
-                                        " which I don't like.`"
-                                        " `I'mma Report Spam.`")
-
-                    try:
-                        del COUNT_PM[event.chat_id]
-                        del LASTMSG[event.chat_id]
-                    except KeyError:
-                        if BOTLOG:
-                            await event.client.send_message(
-                                BOTLOG_CHATID,
-                                "Count PM is seemingly going retard, "
-                                "plis restart bot!",
-                            )
-                        LOGS.info("CountPM wen't rarted boi")
-                        return
-
-                    await event.client(BlockRequest(event.chat_id))
-                    await event.client(ReportSpamRequest(peer=event.chat_id))
-
-                    if BOTLOG:
-                        name = await event.client.get_entity(event.chat_id)
-                        name0 = str(name.first_name)
-                        await event.client.send_message(
-                            BOTLOG_CHATID,
-                            "[" + name0 + "](tg://user?id=" +
-                            str(event.chat_id) + ")" +
-                            " was just another retarded nibba")
 
 CMD_HELP.update({
     "pmpermit":
-    ".approve\n.disapprove\n"
-    ".approve: Approve the mentioned/replied person to PM\n.disapprove: Disapprove the mentioned/replied person to PM"
+    ".approve\n"
+    "Usage: Approve the mentioned/replied person to PM."
 })
 
 CMD_HELP.update(
@@ -314,6 +246,7 @@ CMD_HELP.update({
     ".notifoff\n"
     "Usage: Clear any notifications of unapproved PMs."
 })
+
 CMD_HELP.update(
     {"notifon": ".notifon\n"
      "Usage: Allow notifications for unnaproved PMs."})
