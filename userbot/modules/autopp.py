@@ -40,8 +40,8 @@ async def autopic(event):
                   lim = 0
             elif group.isdigit():
                   lim = int(group)
-        else:
-          lim = 1
+            else:
+              lim = 1
         pfplist = await bot(GetUserPhotosRequest(user_id=delpfp.from_id,
                              offset=0,
                              max_id=0,
