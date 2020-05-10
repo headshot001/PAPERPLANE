@@ -11,7 +11,7 @@ import shutil
 import pytz 
 import urllib.request
 from telethon import events
-from userbot import CMD_HELP
+from userbot import CMD_HELP, bot
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
 urllib.request.urlretrieve(url, './Antaro.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
@@ -33,11 +33,21 @@ async def autopic(event):
         img.save(photo)
         file = await event.client.upload_file(photo) 
         try:
+            lim = 1
+            pfplist = await bot(GetUserPhotosRequest(user_id=delpfp.from_id, offset=0, max_id=0, limit=lim))
+            input_photos = []
+            for sep in pfplist.photos:
+                input_photos.append(InputPhoto(id=sep.id, access_hash=sep.access_hash, file_reference=sep.file_reference))
+            await bot(DeletePhotosRequest(id=input_photos))
             await event.client(functions.photos.UploadProfilePhotoRequest(file))
             os.remove(photo)
             await asyncio.sleep(60)
+            
         except:
             return
+
+    
+
 
 CMD_HELP.update({
 "autoname":
