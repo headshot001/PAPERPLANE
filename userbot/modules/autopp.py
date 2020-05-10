@@ -38,7 +38,7 @@ async def autopic(event):
             input_photos = []
             for sep in pfplist.photos:
                 input_photos.append(InputPhoto(id=sep.id, access_hash=sep.access_hash, file_reference=sep.file_reference))
-            await bot(DeletePhotosRequest(id=input_photos))
+            await bot(functions.photos.DeletePhotosRequest(id=input_photos))
             await event.client(functions.photos.UploadProfilePhotoRequest(file))
             os.remove(photo)
             await asyncio.sleep(60)
