@@ -4,14 +4,16 @@ import os
 import datetime
 import time
 from PIL import Image, ImageDraw, ImageFont
-from telethon.tl import functions
 from userbot.events import register
 import asyncio
 import shutil
 import pytz 
 import urllib.request
 from telethon import events
-from userbot import CMD_HELP, bot
+from userbot import CMD_HELP
+from telethon.tl.functions.photos import (DeletePhotosRequest,
+                                          GetUserPhotosRequest,
+                                          UploadProfilePhotoRequest)
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
 urllib.request.urlretrieve(url, './Antaro.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
@@ -38,8 +40,8 @@ async def autopic(event):
             input_photos = []
             for sep in pfplist.photos:
                 input_photos.append(InputPhoto(id=sep.id, access_hash=sep.access_hash, file_reference=sep.file_reference))
-            await bot(functions.photos.DeletePhotosRequest(id=input_photos))
-            await event.client(functions.photos.UploadProfilePhotoRequest(file))
+            await event.client(DeletePhotosRequest(id=input_photos))
+            await event.client(UploadProfilePhotoRequest(file))
             os.remove(photo)
             await asyncio.sleep(60)
             
