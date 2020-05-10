@@ -10,7 +10,7 @@ import shutil
 import pytz 
 import urllib.request
 from telethon import events
-from userbot import CMD_HELP
+from userbot import CMD_HELP, bot
 from telethon.tl.functions.photos import (DeletePhotosRequest,
                                           GetUserPhotosRequest,
                                           UploadProfilePhotoRequest)
