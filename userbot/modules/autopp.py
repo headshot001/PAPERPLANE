@@ -34,7 +34,7 @@ async def autopic(event):
         file = await event.client.upload_file(photo) 
         try:
             lim = 1
-            pfplist = await bot(GetUserPhotosRequest(user_id=delpfp.from_id, offset=0, max_id=0, limit=lim))
+            pfplist = await bot(GetUserPhotosRequest(user_id=event.from_id, offset=0, max_id=0, limit=lim))
             input_photos = []
             for sep in pfplist.photos:
                 input_photos.append(InputPhoto(id=sep.id, access_hash=sep.access_hash, file_reference=sep.file_reference))
