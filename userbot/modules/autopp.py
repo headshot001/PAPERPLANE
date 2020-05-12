@@ -3,6 +3,7 @@
 import os
 import datetime
 import time
+from telethon import events
 from PIL import Image, ImageDraw, ImageFont
 from userbot.events import register
 import asyncio
