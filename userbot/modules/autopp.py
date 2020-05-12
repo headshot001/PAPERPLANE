@@ -38,7 +38,7 @@ async def autopic(event):
            await event.client(UploadProfilePhotoRequest(file))
            os.remove(photo)
            await asyncio.sleep(60)
-           pfplist = await bot(GetUserPhotosRequest(user_id=delpfp.from_id,
+           pfplist = await bot(GetUserPhotosRequest(user_id=event.from_id,
                              offset=0,
                              max_id=0,
                              limit=1))
