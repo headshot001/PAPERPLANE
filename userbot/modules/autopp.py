@@ -18,7 +18,7 @@ from telethon.tl.functions.photos import (DeletePhotosRequest,
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
 urllib.request.urlretrieve(url, './Antaro.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
-url1 = 'https://telegra.ph/file/90beea821b7912157baf6.png'
+url1 = 'https://telegra.ph/file/d3048ee6593a0bcb327a3.png'
 urllib.request.urlretrieve(url1, './original_pic.png')
 
 @register(outgoing=True, pattern="^.autopp$")
