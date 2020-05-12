@@ -16,7 +16,7 @@ from telethon.tl.functions.photos import UploadProfilePhotoRequest
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
 urllib.request.urlretrieve(url, './Antaro.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
-url1 = 'https://telegra.ph/file/ffea2e611ab5a1e5598cd.jpg'
+url1 = 'https://telegra.ph/file/999182598f77d67a17279.jpg'
 urllib.request.urlretrieve(url1, './original_pic.png')
 
 @register(outgoing=True, pattern="^.autopp$")
