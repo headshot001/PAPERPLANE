@@ -12,9 +12,7 @@ import pytz
 import urllib.request
 from telethon import events
 from userbot import CMD_HELP, bot
-from telethon.tl.functions.photos import (DeletePhotosRequest,
-                                          GetUserPhotosRequest,
-                                          UploadProfilePhotoRequest
+from telethon.tl.functions.photos import UploadProfilePhotoRequest
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
 urllib.request.urlretrieve(url, './Antaro.ttf')
 FONT_FILE_TO_USE = "./Antaro.ttf"
