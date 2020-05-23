@@ -11,6 +11,7 @@ import shutil
 import pytz 
 import urllib.request
 from telethon import events
+from telethon.tl.functions.photos import DeletePhotosRequest
 from userbot import CMD_HELP, bot
 from telethon.tl.functions.photos import UploadProfilePhotoRequest
 url = 'https://raw.githubusercontent.com/Ayush1311/PAPERPLANE/master/Antaro.ttf'
@@ -37,11 +38,13 @@ async def autopic(event):
            await event.client(UploadProfilePhotoRequest(file))
            os.remove(photo)
            await asyncio.sleep(60)
+           n = 1
+           await event.client(DeletePhotosRequest(await event.client.get_profile_photos("me", limit=n)))
         except:
              return
  
 
 CMD_HELP.update({
-"autoname":
+"autopp":
 "A module to show a running timer in the user profile picture"
 })
