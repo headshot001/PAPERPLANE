@@ -51,7 +51,7 @@ async def _(event):
         
 async def ban_user(chat_id, i, rights):
     try:
-        await event.client(functions.channels.replyBannedRequest(chat_id, i, rights))
+        await event.client(functions.channels.EditBannedRequest(chat_id, i, rights))
         return True, None
     except Exception as exc:
         return False, str(exc)
