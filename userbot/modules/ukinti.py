@@ -17,12 +17,12 @@ KICK_RIGHTS = ChatBannedRights(until_date=None, view_messages=True)
 async def _(event):
     if event.fwd_from:
         return
-    if event.is_private:
-        return
     chat = await event.get_chat()
-    if not (chat.admin_rights or chat.creator):
-       await event.reply("`I am not admin here!`")
-       return 
+    admin = chat.admin_rights
+    creator = chat.creator
+    if not admin and not creator:
+        await event.reply("I am not admin here !")
+        return
     c = 0
     m = 0
     n = 0
@@ -50,6 +50,17 @@ async def _(event):
                         await event.reply("I need admin priveleges to perform this action!")
                     except:
                         pass                    
+            else:
+               c = c + 1
+
+        if isinstance(i.status, UserStatusEmpty):
+            y = y + 1         
+            status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
+            if not status:
+               try:
+                  await event.edit("I need admin priveleges to perform this action!")
+               except:
+                   pass                    
             else:
                c = c + 1
 
