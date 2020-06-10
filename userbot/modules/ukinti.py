@@ -11,7 +11,7 @@ from time import sleep
 import asyncio
 from userbot.events import register
 
-@register(pattern="^/kickthefools")
+@register(pattern=".kickthefools")
 async def _(event):
     if event.fwd_from:
         return
