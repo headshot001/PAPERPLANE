@@ -26,7 +26,6 @@ async def _(event):
     c = 0
     m = 0
     n = 0
-    ee = []
     y = 0
     w = 0   
     await event.reply("Searching Participant Lists...")
@@ -34,27 +33,23 @@ async def _(event):
 
         if isinstance(i.status, UserStatusLastMonth):
             m = m + 1
-            status, e = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
+            status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
             if not status:
                     try:
                         await event.reply("I need admin priveleges to perform this action!")
                     except:
                         pass
-                    ee.append(str(e))
-                    print(ee)
             else:
                c = c + 1
                     
         if isinstance(i.status, UserStatusLastWeek):
             w = w + 1
-            status, e = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
+            status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
             if not status:
                     try:
                         await event.reply("I need admin priveleges to perform this action!")
                     except:
-                        pass
-                    ee.append(str(e))
-                    print(ee)
+                        pass                    
             else:
                c = c + 1
 
