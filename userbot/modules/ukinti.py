@@ -17,8 +17,8 @@ async def _(event):
         return
     if event.is_private:
         return False   
-     chat = await event.get_chat()
-     if not (chat.admin_rights or chat.creator):
+    chat = await event.get_chat()
+    if not (chat.admin_rights or chat.creator):
             await event.reply("`I am not admin here!`")
             return False
     p = 0
