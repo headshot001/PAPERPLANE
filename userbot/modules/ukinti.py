@@ -53,7 +53,7 @@ async def _(event):
             else:
                c = c + 1
 
-        if isinstance(i.status == "last seen a long time ago"):
+        if isinstance(i.status, "last seen a long time ago"):
             y = y + 1         
             status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
             if not status:
