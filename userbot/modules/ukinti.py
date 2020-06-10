@@ -30,7 +30,7 @@ async def _(event):
     q = 0
     r = 0
     await event.reply("Searching Participant Lists...")
-    async for i in client.iter_participants(event.chat_id):
+    async for i in event.client.iter_participants(event.chat_id):
         p = p + 1
         rights = ChatBannedRights(
             until_date=None,
