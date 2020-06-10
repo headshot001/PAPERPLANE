@@ -11,6 +11,7 @@ from time import sleep
 import asyncio
 from userbot.events import register
 
+borg = client
 
 @register(pattern=".unbanall (.*)")
 async def _(event):
