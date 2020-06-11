@@ -30,14 +30,14 @@ async def _(event):
         if isinstance(i.status, UserStatusLastMonth):
             status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
             if not status:
-               await event.reply("I need admin priveleges to perform this action!")
+               return
             else:
                c = c + 1
                     
         if isinstance(i.status, UserStatusLastWeek):
             status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
             if not status:
-               await event.reply("I need admin priveleges to perform this action!")
+               return
             else:
                c = c + 1                    
 
