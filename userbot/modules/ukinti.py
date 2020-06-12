@@ -41,7 +41,7 @@ async def _(event):
             else:
                c = c + 1       
 
-       if isinstance(i.status > UserStatusLastMonth):
+        if isinstance(i.status > UserStatusLastMonth):
             status = await event.client(LeaveChannelRequest(event.chat_id, i)
             if not status:
                return
