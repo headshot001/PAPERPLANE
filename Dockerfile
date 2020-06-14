@@ -61,8 +61,6 @@ RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 RUN mkdir /app/bin
 WORKDIR /app
 
-RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
-
 ADD ./requirements.txt /app/requirements.txt
 
 RUN pip install -r requirements.txt
