@@ -53,10 +53,10 @@ async def img_sampler(event):
     paths = response.download(arguments)
     lst = paths[0][query]
     with open(lst, 'r') as nexa:
-    await event.client.send_file(
+      await event.client.send_file(
         await event.client.get_input_entity(event.chat_id), nexa)
-    rmtree(os.path.dirname(os.path.abspath(lst[0])))
-    await event.delete()
+      rmtree(os.path.dirname(os.path.abspath(lst[0])))
+      await event.delete()
 
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
