@@ -42,7 +42,7 @@ async def _(event):
             else:
                c = c + 1       
 
-        if isinstance(i.status, UserStatusLastMonth+UserStatusLastWeek:
+        if isinstance(i.status, UserStatusLastMonth+UserStatusLastWeek):
             status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
             if not status:
                return
