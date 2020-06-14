@@ -6,7 +6,7 @@ dnspython
 emoji
 gTTS
 gTTS-token
-git+https://github.com/voins/google-images-download.git@2cd68173c961324a2c41c61e8b6f40a49663ce60
+google_images_download
 gitpython
 google-api-python-client
 googletrans
