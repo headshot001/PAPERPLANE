@@ -63,7 +63,7 @@ WORKDIR /app
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
-ADD ./requirements.txt /srv/requirements.txt
+ADD ./requirements.txt /app/requirements.txt
 
 RUN pip install -r requirements.txt
 
