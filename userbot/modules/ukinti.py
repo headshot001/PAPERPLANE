@@ -20,7 +20,7 @@ async def _(event):
     
     c = 0
     KICK_RIGHTS = ChatBannedRights(until_date=None, view_messages=True)
-    UserStatusLongAgo = UserStatusLastMonth + UserStatusLastWeek
+    UserStatusLongAgo = int(UserStatusLastMonth) + int(UserStatusLastWeek)
     await event.reply("Searching Participant Lists...")
     async for i in event.client.iter_participants(event.chat_id):
 
