@@ -44,10 +44,11 @@ async def img_sampler(event):
     # creating list of arguments
     downloader.download(query, limit=lim)
     os.chdir(f'dataset/bing/{query}')
-    for listed in glob.glob("*.jpg") or listed in glob.glob("*.png") or listed in glob.glob("*.jpeg"):     
-        await event.client.send_file(event.chat_id, listed)
+    for listed in glob.glob("*.jpg") or listed in glob.glob("*.png") or listed in glob.glob("*.jpeg"):  
+        last = listed   
+    await event.client.send_file(event.chat_id, last)
     os.system('rm -rf dataset')
-    os.chdir('/root/haruka')
+    os.chdir('./')
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
 async def gsearch(q_event):
