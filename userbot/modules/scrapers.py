@@ -43,7 +43,7 @@ async def img_sampler(event):
     
     # creating list of arguments
     downloader.download(query, limit=lim)
-    os.chdir('dataset/bing/{query}')
+    os.chdir(f'dataset/bing/{query}')
     for listed in glob.glob("*.jpg"):
         with open(listed, 'r') as lst:
              await event.client.send_file(await event.client.get_input_entity(event.chat_id), lst)
