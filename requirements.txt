@@ -38,4 +38,4 @@ youtube-dl
 coffeehouse
 pyfiglet
 heroku3
-opencv-python
+git+https://github.com/opencv/opencv.git
