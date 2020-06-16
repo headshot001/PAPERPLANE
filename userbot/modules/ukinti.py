@@ -65,7 +65,6 @@ async def asciiart(event):
      downloaded_file_name = await event.client.download_media(reply_msg, './')
   except Exception as e: 
      await event.reply(str(e))
-  
   img = Image.open(downloaded_file_name)
   width, height = img.size
   aspect_ratio = height/width
@@ -80,8 +79,10 @@ async def asciiart(event):
   new_pixels_count = len(new_pixels)
   ascii_image = [new_pixels[index:index + new_width] for index in range(0, new_pixels_count, new_width)]
   ascii_image = "\n".join(ascii_image)
+  os.system('touch ascii.html')
   with open("ascii.html", "w") as f:
      f.write(ascii_image)
+     f.close()
   await event.client.send_file(event.chat_id, f, caption="HERE IS YOUR ASCII ART", reply_to=event.id)
   os.remove(f)
 
