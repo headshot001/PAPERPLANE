@@ -11,7 +11,7 @@ from telethon.tl.functions.channels import (EditAdminRequest,
 from telethon.tl.functions.channels import LeaveChannelRequest
 
 from userbot.events import register
-
+from PIL import Image
 
 @register(pattern=".kickthefools")
 async def _(event):
@@ -47,3 +47,32 @@ async def _(event):
     
     required_string = "Successfully Kicked **{}** users"
     await event.reply(required_string.format(c))
+
+@register(pattern="^/ascii")
+async def asciiart(event):
+  if event.fwd_from:
+     return  
+  if not event.from_id:
+     await event.reply("Reply To A Image Plox..")
+     return
+  reply_msg = await event.get_reply_message()
+  img = Image.open(reply_msg)
+  width, height = img.size
+  aspect_ratio = height/width
+  new_width = 120
+  new_height = aspect_ratio * new_width * 0.55
+  img = img.resize((new_width, int(new_height)))
+  img = img.convert('L')
+  pixels = img.getdata()
+  chars = ["B","S","#","&","@","$","%","*","!",":","."]
+  new_pixels = [chars[pixel//25] for pixel in pixels]
+  new_pixels = ''.join(new_pixels)
+  new_pixels_count = len(new_pixels)
+  ascii_image = [new_pixels[index:index + new_width] for index in range(0, new_pixels_count, new_width)]
+  ascii_image = "\n".join(ascii_image)
+  with open("ascii.html", "w") as f:
+     f.write(ascii_image)
+  await event.client.send_file(event.chat_id, f, caption="HERE IS YOUR ASCII ART", reply_to=event.id)
+
+
+
