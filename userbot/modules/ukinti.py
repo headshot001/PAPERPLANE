@@ -57,10 +57,14 @@ async def asciiart(event):
      await event.reply("Reply To A Image Plox..")
      return
   reply_msg = await event.get_reply_message()
-  buffer = await event.client.download_media(
-            reply_msg,
-            buffer)
-  img = Image.open(buffer)
+  if not os.path.isdir('./'):
+        os.makedirs('./')
+  try:
+     downloaded_file_name = await event.client.download_media(reply_msg, './')
+  except Exception as e: 
+     await event.reply(str(e))
+  
+  img = Image.open(downloaded_file_name)
   width, height = img.size
   aspect_ratio = height/width
   new_width = 120
@@ -77,6 +81,7 @@ async def asciiart(event):
   with open("ascii.html", "w") as f:
      f.write(ascii_image)
   await event.client.send_file(event.chat_id, f, caption="HERE IS YOUR ASCII ART", reply_to=event.id)
+  os.remove(f)
 
 
 
