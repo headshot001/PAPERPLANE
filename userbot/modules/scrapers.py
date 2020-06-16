@@ -28,7 +28,7 @@ import glob
 # Default language to EN
 LANG = "en"
 
-@register(outgoing=True, pattern="^/img (.*)")
+@register(outgoing=True, pattern="^.img (.*)")
 async def img_sampler(event):
     """ For .img command, search and return images matching the query. """
     await event.reply("Processing...")
@@ -45,8 +45,8 @@ async def img_sampler(event):
     downloader.download(query, limit=lim)
     os.chdir(f'dataset/bing/{query}')
     for listed in glob.glob("*.jpg"):
-        await event.client.send_file(event.chat_id, listed)
-    os.system('cd && rm -rf dataset')
+        await event.client.send_file(event.chat_id, listed, reply_to=event.id)
+    os.system('rm -rf dataset')
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
 async def gsearch(q_event):
