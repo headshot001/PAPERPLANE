@@ -37,4 +37,4 @@ youtube-dl
 coffeehouse
 pyfiglet
 heroku3
-opencv-python
+opencv
