@@ -83,7 +83,7 @@ async def asciiart(event):
   with open("ascii.html", "w") as f:
      f.write(ascii_image)
      f.close()
-  await event.client.send_file(event.chat_id, f, caption="HERE IS YOUR ASCII ART", reply_to=event.id)
+     await event.client.send_file(event.chat_id, f, caption="HERE IS YOUR ASCII ART", reply_to=event.id)
   os.remove(f)
 
 
