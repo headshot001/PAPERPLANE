@@ -22,15 +22,17 @@ from wikipedia.exceptions import DisambiguationError, PageError
 
 from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, bot)
 from userbot.events import register
+import cv2
+import glob
+
 
 # Default language to EN
 LANG = "en"
 
-
-@register(outgoing=True, pattern="^.img (.*)")
+@register(outgoing=True, pattern="^/img (.*)")
 async def img_sampler(event):
     """ For .img command, search and return images matching the query. """
-    await event.edit("Processing...")
+    await event.reply("Processing...")
     query = event.pattern_match.group(1)
     lim = findall(r"lim=\d+", query)
     try:
@@ -38,7 +40,7 @@ async def img_sampler(event):
         lim = lim.replace("lim=", "")
         query = query.replace("lim=" + lim[0], "")
     except IndexError:
-        lim = 10
+        lim = 5
     response = google_images_download.googleimagesdownload()
 
     # creating list of arguments
@@ -51,13 +53,11 @@ async def img_sampler(event):
 
     # passing the arguments to the function
     paths = response.download(arguments)
-    lst = paths[0][query]
-    with open(lst, 'r') as nexa:
-      await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), nexa)
-      rmtree(os.path.dirname(os.path.abspath(lst[0])))
-      await event.delete()
-
+    for lst in glob.glob("*.jpg"):
+        cv_img = cv2.imread(lst)
+    await event.client.send_file(
+        await event.client.get_input_entity(event.chat_id), cv_img)
+    rmtree(os.path.dirname(os.path.abspath(lst[0])))
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
 async def gsearch(q_event):
