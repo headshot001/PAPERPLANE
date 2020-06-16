@@ -11,7 +11,7 @@ from shutil import rmtree
 from urllib.error import HTTPError
 
 from emoji import get_emoji_regexp
-from google_images_download import google_images_download
+from bing_image_downloader import downloader
 from googletrans import LANGUAGES, Translator
 from gtts import gTTS, gTTSError
 from requests import get
@@ -40,22 +40,14 @@ async def img_sampler(event):
         query = query.replace("lim=" + lim[0], "")
     except IndexError:
         lim = 5
-    response = google_images_download.googleimagesdownload()
-
+    
     # creating list of arguments
-    arguments = {
-        "keywords": query,
-        "limit": lim,
-        "format": "jpg",
-        "no_directory": "no_directory"
-    }
-
-    # passing the arguments to the function
-    paths = response.download(arguments)
+    downloader.download(query, limit=lim)
+    os.chdir('dataset/bing/{query}')
     for listed in glob.glob("*.jpg"):
         with open(listed, 'r') as lst:
              await event.client.send_file(await event.client.get_input_entity(event.chat_id), lst)
-    rmtree(os.path.dirname(os.path.abspath(lst[0])))
+    os.system('cd && rm -rf dataset')
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
 async def gsearch(q_event):
