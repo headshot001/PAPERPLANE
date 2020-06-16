@@ -17,12 +17,7 @@ from userbot.events import register
 async def _(event):
     if event.fwd_from:
         return
-    chat = await event.get_chat()
-    admin = chat.admin_rights
-    creator = chat.creator
-    if not admin and not creator:
-        await event.reply("I am not admin here !")
-        return
+    
     c = 0
     KICK_RIGHTS = ChatBannedRights(until_date=None, view_messages=True)
     UserStatusLongAgo = UserStatusLastMonth + UserStatusLastWeek
