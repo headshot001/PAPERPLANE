@@ -45,8 +45,7 @@ async def img_sampler(event):
     downloader.download(query, limit=lim)
     os.chdir(f'dataset/bing/{query}')
     for listed in glob.glob("*.jpg"):
-        with open(listed, 'r') as lst:
-             await event.client.send_file(await event.client.get_input_entity(event.chat_id), lst)
+        await event.client.send_file(event.chat_id, listed)
     os.system('cd && rm -rf dataset')
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
