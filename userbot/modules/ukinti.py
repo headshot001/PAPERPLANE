@@ -12,6 +12,8 @@ from telethon.tl.functions.channels import LeaveChannelRequest
 
 from userbot.events import register
 from PIL import Image
+import os 
+
 
 @register(pattern=".kickthefools")
 async def _(event):
