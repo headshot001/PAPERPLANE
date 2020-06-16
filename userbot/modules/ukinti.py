@@ -61,30 +61,7 @@ async def asciiart(event):
   reply_msg = await event.get_reply_message()
   if not os.path.isdir('./'):
         os.makedirs('./')
-  try:
-     downloaded_file_name = await event.client.download_media(reply_msg, './')
-  except Exception as e: 
-     await event.reply(str(e))
-  img = Image.open(downloaded_file_name)
-  width, height = img.size
-  aspect_ratio = height/width
-  new_width = 120
-  new_height = aspect_ratio * new_width * 0.55
-  img = img.resize((new_width, int(new_height)))
-  img = img.convert('L')
-  pixels = img.getdata()
-  chars = ["B","S","#","&","@","$","%","*","!",":","."]
-  new_pixels = [chars[pixel//25] for pixel in pixels]
-  new_pixels = ''.join(new_pixels)
-  new_pixels_count = len(new_pixels)
-  ascii_image = [new_pixels[index:index + new_width] for index in range(0, new_pixels_count, new_width)]
-  ascii_image = "\n".join(ascii_image)
-  os.system('touch ascii.html')
-  with open("ascii.html", "w") as f:
-     f.write(ascii_image)
-     f.close()
-     await event.client.send_file(event.chat_id, f, caption="HERE IS YOUR ASCII ART", reply_to=event.id)
-  os.remove(f)
-
-
-
+  downloaded_file_name = await event.client.download_media(reply_msg, './')
+  os.system(f'python3 ascii {downloaded_file_name}')
+  omg = await event.client.upload_file('./ascii.html')
+  await event.client.send_file(event.chat_id, omg)
