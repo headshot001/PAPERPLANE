@@ -23,7 +23,8 @@ from wikipedia.exceptions import DisambiguationError, PageError
 from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, bot)
 from userbot.events import register
 import glob
-
+from os.path import join
+from glob import glob
 
 # Default language to EN
 LANG = "en"
@@ -43,11 +44,11 @@ async def img_sampler(event):
     
     # creating list of arguments
     downloader.download(query, limit=lim)
-    os.chdir(f'dataset/bing/{query}')
-    listed = glob.glob("*.jpg") + glob.glob("*.png") + glob.glob("*.jpeg")
-    await event.client.send_file(event.chat_id, listed)
+    files = []
+    for ext in ('*.jpg', '*.png', '*.jpeg'):
+        files.extend(glob(join(f"dataset/bing/{query}", ext)))
+    await event.client.send_file(event.chat_id, files)
     os.system('rm -rf dataset')
-    os.chdir('/app')
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
 async def gsearch(q_event):
