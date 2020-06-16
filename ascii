@@ -31,5 +31,5 @@ ascii_image = "\n".join(ascii_image)
 print(ascii_image)
 
 # write to a text file.
-with open("ascii_image.txt", "w") as f:
+with open("ascii.html", "w") as f:
  f.write(ascii_image)
