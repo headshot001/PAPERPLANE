@@ -37,3 +37,4 @@ youtube-dl
 coffeehouse
 pyfiglet
 heroku3
+bing_image_downloader
