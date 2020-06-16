@@ -48,6 +48,7 @@ async def _(event):
     required_string = "Successfully Kicked **{}** users"
     await event.reply(required_string.format(c))
 
+
 @register(pattern="^/ascii")
 async def asciiart(event):
   if event.fwd_from:
@@ -56,7 +57,10 @@ async def asciiart(event):
      await event.reply("Reply To A Image Plox..")
      return
   reply_msg = await event.get_reply_message()
-  img = Image.open(reply_msg)
+  buffer = await event.client.download_media(
+            reply_msg,
+            buffer)
+  img = Image.open(buffer)
   width, height = img.size
   aspect_ratio = height/width
   new_width = 120
