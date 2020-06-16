@@ -22,7 +22,6 @@ from wikipedia.exceptions import DisambiguationError, PageError
 
 from userbot import (BOTLOG, BOTLOG_CHATID, CMD_HELP, bot)
 from userbot.events import register
-import cv2
 import glob
 
 
@@ -53,10 +52,9 @@ async def img_sampler(event):
 
     # passing the arguments to the function
     paths = response.download(arguments)
-    for lst in glob.glob("*.jpg"):
-        cv_img = cv2.imread(lst)
-    await event.client.send_file(
-        await event.client.get_input_entity(event.chat_id), cv_img)
+    for listed in glob.glob("*.jpg"):
+        with open(listed, 'r') as lst:
+             await event.client.send_file(await event.client.get_input_entity(event.chat_id), lst)
     rmtree(os.path.dirname(os.path.abspath(lst[0])))
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
