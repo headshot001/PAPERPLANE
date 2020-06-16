@@ -45,13 +45,14 @@ async def img_sampler(event):
     downloader.download(query, limit=lim)
     os.chdir(f'dataset/bing/{query}')
     for listed in glob.glob("*.jpg"):
-        await event.client.send_file(event.chat_id, listed, reply_to=event.id)
+       topa = listed
     for listed in glob.glob("*.png"):
-        await event.client.send_file(event.chat_id, listed, reply_to=event.id)
-    for listed in glob.glob("*.jpeg"):
-        await event.client.send_file(event.chat_id, listed, reply_to=event.id)
+       topa += listed
+    for listed in glob.glob("*.jpeg"):  
+       topa += listed
+    await event.client.send_file(event.chat_id, topa)
     os.system('rm -rf dataset')
-    os.chdir('./')
+    os.chdir('/root/haruka')
 
 @register(outgoing=True, pattern=r"^.google(?: |$)(.*)")
 async def gsearch(q_event):
