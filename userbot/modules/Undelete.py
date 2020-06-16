@@ -3,7 +3,7 @@ from usebot.events import register
 import asyncio
 
 
-@register(pattern="undelete")
+@register(pattern=".undelete")
 async def _(event):
     if event.fwd_from:
         return
