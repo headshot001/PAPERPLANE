@@ -83,29 +83,6 @@ RUN apk update && apk upgrade && apk --no-cache add \
     zlib-dev
 
 
-# Install OpenCV
-RUN mkdir /opt && cd /opt && \
-  wget https://github.com/opencv/opencv/archive/3.2.0.zip && \
-  unzip 3.2.0.zip && rm 3.2.0.zip && \
-  wget https://github.com/opencv/opencv_contrib/archive/3.2.0.zip && \
-  unzip 3.2.0.zip && rm 3.2.0.zip \
-  && \
-  cd /opt/opencv-3.2.0 && mkdir build && cd build && \
-  cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_C_COMPILER=/usr/bin/clang \
-    -D CMAKE_CXX_COMPILER=/usr/bin/clang++ \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D INSTALL_PYTHON_EXAMPLES=OFF \
-    -D INSTALL_C_EXAMPLES=OFF \
-    -D WITH_FFMPEG=ON \
-    -D WITH_TBB=ON \
-    -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib-3.2.0/modules \
-    -D PYTHON_EXECUTABLE=/usr/local/bin/python \
-    .. \
-  && \
-  make -j$(nproc) && make install && cd .. && rm -rf build \
-  
-
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
 
@@ -121,6 +98,7 @@ RUN python3 -m ensurepip \
 RUN ln -s /usr/include/locale.h /usr/include/xlocale.h && \
   pip3 install numpy
 
+RUN pip3 install opencv-python
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
