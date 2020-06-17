@@ -38,4 +38,4 @@ coffeehouse
 pyfiglet
 heroku3
 bing_image_downloader
-opencv
+opencv-contrib-python
