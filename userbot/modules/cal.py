@@ -5,7 +5,7 @@ import asyncio
 from datetime import datetime
 import requests
 import json
-from haruka.events import register
+from userbot.events import register
 
 
 @register("^.calendar (.*)")
