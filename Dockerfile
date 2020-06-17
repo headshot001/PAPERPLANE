@@ -2,6 +2,11 @@ FROM alpine:edge
 
 ENV LANG=C.UTF-8
 
+RUN echo -e "\n\
+@edgemain http://nl.alpinelinux.org/alpine/edge/main\n\
+@edgecomm http://nl.alpinelinux.org/alpine/edge/community\n\
+@edgetest http://nl.alpinelinux.org/alpine/edge/testing"\
+  >> /etc/apk/repositories
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
