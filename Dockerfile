@@ -8,6 +8,8 @@ RUN echo -e "\n\
 @edgecomm http://nl.alpinelinux.org/alpine/edge/community\n\
 @edgetest http://nl.alpinelinux.org/alpine/edge/testing"\
   >> /etc/apk/repositories
+RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
 # Install required packages
 RUN apk update && apk upgrade && apk --no-cache add \
@@ -118,6 +120,13 @@ RUN mkdir /opt && cd /opt && \
 
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
+
+RUN python3 -m ensurepip \
+    && pip3 install --upgrade pip setuptools \
+    && rm -r /usr/lib/python*/ensurepip && \
+    if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
+    if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+    rm -r /root/.cache
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
