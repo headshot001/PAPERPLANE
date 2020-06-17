@@ -82,14 +82,6 @@ RUN apk update && apk upgrade && apk --no-cache add \
     unzip \
     zlib-dev
 
-# Python 3 as default
-RUN ln -s /usr/bin/python3 /usr/local/bin/python && \
-  ln -s /usr/bin/pip3 /usr/local/bin/pip && \
-  pip install --upgrade pip
-
-# Install NumPy
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h && \
-  pip install numpy
 
 # Install OpenCV
 RUN mkdir /opt && cd /opt && \
@@ -113,8 +105,8 @@ RUN mkdir /opt && cd /opt && \
   && \
   make -j$(nproc) && make install && cd .. && rm -rf build \
   && \
-  cp -p $(find /usr/local/lib/python3.5/site-packages -name cv2.*.so) \
-   /usr/lib/python3.5/site-packages/cv2.so && \
+  cp -p $(find /usr/local/lib/python3.8/site-packages -name cv2.*.so) \
+   /usr/lib/python3.8/site-packages/cv2.so && \
    python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
 
 
@@ -127,6 +119,12 @@ RUN python3 -m ensurepip \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
+
+
+# Install NumPy
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h && \
+  pip3 install numpy
+
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
