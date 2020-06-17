@@ -15,14 +15,20 @@ from PIL import Image
 import os 
 
 
+
 @register(pattern=".kickthefools")
 async def _(event):
     if event.fwd_from:
         return
-    
+
+    iampower = event.from_id
+
+    if not iampower.admin_rights or iampower.creator:
+        await event.edit("NO_ADMIN")
+        return
+   
     c = 0
     KICK_RIGHTS = ChatBannedRights(until_date=None, view_messages=True)
-    UserStatusLongAgo = int(UserStatusLastMonth) + int(UserStatusLastWeek)
     await event.reply("Searching Participant Lists...")
     async for i in event.client.iter_participants(event.chat_id):
 
@@ -40,7 +46,7 @@ async def _(event):
             else:
                c = c + 1       
 
-        if isinstance(i.status, UserStatusLongAgo):
+        if isinstance(i.status, UserStatusLastMonth):
             status = await event.client(EditBannedRequest(event.chat_id, i, KICK_RIGHTS))
             if not status:
                return
