@@ -104,10 +104,7 @@ RUN mkdir /opt && cd /opt && \
     .. \
   && \
   make -j$(nproc) && make install && cd .. && rm -rf build \
-  && \
-  cp -p $(find /usr/local/lib/python3.8/site-packages -name cv2.*.so) \
-   /usr/lib/python3.8/site-packages/cv2.so 
-
+  
 
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
