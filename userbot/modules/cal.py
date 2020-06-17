@@ -8,7 +8,7 @@ import json
 from userbot.events import register
 
 
-@register("^.calendar (.*)")
+@register(pattern=".calendar (.*)")
 async def _(event):
     if event.fwd_from:
         return
