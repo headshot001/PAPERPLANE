@@ -38,4 +38,4 @@ coffeehouse
 pyfiglet
 heroku3
 bing_image_downloader
-git+https://github.com/skvark/opencv-python.git
+opencv-python-headless
