@@ -107,7 +107,6 @@ RUN mkdir /opt && cd /opt && \
   && \
   cp -p $(find /usr/local/lib/python3.8/site-packages -name cv2.*.so) \
    /usr/lib/python3.8/site-packages/cv2.so && \
-   python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
 
 
 ENV PATH="/app/bin:$PATH"
