@@ -20,13 +20,13 @@ import os
 async def _(event):
     if event.fwd_from:
         return
-
-    iampower = event.from_id
-
-    if not iampower.admin_rights or iampower.creator:
-        await event.edit("NO_ADMIN")
-        return
+  
+    chat = await event.get_chat()
    
+    if not chat.admin_rights or chat.creator:
+        await event.reply("NO_ADMIN")
+        return
+    
     c = 0
     KICK_RIGHTS = ChatBannedRights(until_date=None, view_messages=True)
     await event.reply("Searching Participant Lists...")
@@ -55,6 +55,19 @@ async def _(event):
     
     required_string = "Successfully Kicked **{}** users"
     await event.reply(required_string.format(c))
+
+async def get_user_from_id(user, event):
+    """ Getting user from user ID """
+    if isinstance(user, str):
+        user = int(user)
+
+    try:
+        user_obj = await event.client.get_entity(user)
+    except (TypeError, ValueError) as err:
+        await event.edit(str(err))
+        return None
+
+    return user_obj
 
 
 @register(pattern="^/ascii")
