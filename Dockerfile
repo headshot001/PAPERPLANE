@@ -13,6 +13,7 @@ RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/reposit
 # Install required packages
 RUN apk update && apk upgrade && apk --no-cache add \
     coreutils \
+    python-opencv \
     bash \
     nodejs \
     build-base \
