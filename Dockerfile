@@ -1,7 +1,5 @@
 FROM alpine:edge
 
-ENV LANG=C.UTF-8
-
 # Add Edge repos
 RUN echo -e "\n\
 @edgemain http://nl.alpinelinux.org/alpine/edge/main\n\
@@ -137,7 +135,7 @@ RUN mkdir /opt && cd /opt && \
   && \
   make -j$(nproc) && make install && cd .. && rm -rf build \
   && \
-  cp -p $(find /usr/local/lib/python3.8/site-packages -name cv2.*.so) \
+  mv /usr/local/lib/python3.8/site-packages/cv2.*.so) \
    /usr/lib/cv2.so 
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
