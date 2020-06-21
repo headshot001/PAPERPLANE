@@ -1,4 +1,4 @@
-FROM python:3-alpine3.7
+FROM petronetto/opencv-alpine
 
 ENV CC=/usr/bin/clang \
     CXX=/usr/bin/clang++ \
