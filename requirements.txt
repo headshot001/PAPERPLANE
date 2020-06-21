@@ -1,3 +1,5 @@
+wheel
+chromedriver>=2.21
 pillow
 PyDrive2
 aiohttp
