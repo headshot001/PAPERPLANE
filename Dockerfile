@@ -4,7 +4,7 @@ RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/r
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
 # Install required packages
-RUN apk update && apk upgrade && apk --no-cache add \
+RUN apk add --update \
     coreutils \
     bash \
     nodejs \
@@ -49,8 +49,7 @@ RUN apk update && apk upgrade && apk --no-cache add \
     redis \
     fortune \
     cowsay \
-    imagemagick \
-    zlib-dev
+    imagemagick
 
 
 ENV PATH="/app/bin:$PATH"
