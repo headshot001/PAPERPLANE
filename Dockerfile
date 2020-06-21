@@ -1,7 +1,5 @@
-FROM python:3.7-alpine
+FROM alpine:edge
 
-RUN echo 'manylinux1_compatible = True' > /usr/local/lib/python3.7/site-packages/_manylinux.py
-RUN python -c 'import sys; sys.path.append(r"/_manylinux.py")'
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 RUN apk add --no-cache --update \
@@ -63,7 +61,6 @@ RUN python3 -m ensurepip \
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
-RUN pip3 install opencv-python
 RUN pip3 install -r requirements.txt
 
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
