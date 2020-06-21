@@ -1,11 +1,6 @@
-FROM shosoar/alpine-python-opencv
+FROM python:3.7-slim
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories
-RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
-
-RUN apk add --no-cache --update \
+RUN apt update && apt upgrade && apt -y install /
     coreutils \
     bash \
     nodejs \
