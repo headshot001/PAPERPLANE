@@ -1,4 +1,7 @@
-FROM python:3.7-slim
+FROM python:3.7-alpine
+
+RUN echo 'manylinux1_compatible = True' > /usr/local/lib/python3.7/site-packages/_manylinux.py
+RUN python -c 'import sys; sys.path.append(r"/_manylinux.py")'
 
 RUN apt update && apt upgrade && apt -y install \
     coreutils \
