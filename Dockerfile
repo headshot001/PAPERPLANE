@@ -53,7 +53,7 @@ RUN apk add --no-cache --update \
 
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
-COPY builder
+COPY --from=builder /opt
 
 RUN python3 -m ensurepip \
     && pip3 install --upgrade pip setuptools \
