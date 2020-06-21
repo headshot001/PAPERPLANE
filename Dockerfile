@@ -1,3 +1,6 @@
+FROM julianbei/alpine-opencv-microimage:p3-3.1 as builder
+RUN echo "ALL DONE"
+
 FROM alpine:edge
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
@@ -62,10 +65,6 @@ RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
 RUN pip3 install --upgrade wheel
 RUN pip3 install -r requirements.txt
-
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
-
+COPY builder
 CMD ["bash","init/start.sh"]
-
-FROM julianbei/alpine-opencv-microimage:p3-3.1
-RUN echo "ALL DONE"
