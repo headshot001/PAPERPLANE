@@ -1,6 +1,6 @@
 FROM python:3.7-slim
 
-RUN apt update && apt upgrade && apt -y install /
+RUN apt update && apt upgrade && apt -y install \
     coreutils \
     bash \
     nodejs \
