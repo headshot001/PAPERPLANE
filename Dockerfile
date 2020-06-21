@@ -1,11 +1,5 @@
 FROM shosoar/alpine-python-opencv
 
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories
-RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories
-RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
-RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
-
-
 RUN apk add --no-cache --update \
     coreutils \
     bash \
@@ -65,7 +59,6 @@ RUN python3 -m ensurepip \
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
-RUN pip3 install opencv-python
 RUN pip3 install -r requirements.txt
 
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
