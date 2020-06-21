@@ -10,8 +10,6 @@ RUN echo -e "\n\
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
-RUN apk add python-opencv 
-
 # Install required packages
 RUN apk update && apk upgrade && apk --no-cache add \
     coreutils \
@@ -99,9 +97,10 @@ RUN apk update && apk upgrade && apk --no-cache add \
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
 
+RUN cd /app
+
 RUN git clone https://github.com/opencv/opencv.git
-RUN git clone https://github.com/opencv/opencv_contrib.git
-    
+
 RUN cd ~/opencv
 RUN mkdir build
 RUN cd build
@@ -109,6 +108,8 @@ RUN cd build
 RUN cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local ..
 RUN make -j7 
 RUN make install
+
+RUN cd /app
 
 RUN python3 -m ensurepip \
     && pip3 install --upgrade pip setuptools \
