@@ -117,6 +117,5 @@ async def asciiart(event):
 
   omg = await event.client.upload_file('./scanned.pdf')
 
-
   await event.client.send_file(event.chat_id, omg)
   os.remove("./scanned.pdf")
