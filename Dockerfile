@@ -1,5 +1,5 @@
-FROM julianbei/alpine-opencv-microimage:p3-3.1 as builder
-RUN echo "ALL DONE"
+FROM petronetto/opencv-alpine:latest as builder
+python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
 
 FROM alpine:edge
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
