@@ -38,4 +38,5 @@ coffeehouse
 pyfiglet
 heroku3
 bing_image_downloader
-image-to-scan
+numpy 
+mapper
