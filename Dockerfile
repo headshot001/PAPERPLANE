@@ -3,8 +3,7 @@ FROM mlennox/opencv-alpine
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
-# Install required packages
-RUN apk add --update \
+RUN apk add \
     coreutils \
     bash \
     nodejs \
