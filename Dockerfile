@@ -63,6 +63,7 @@ RUN python3 -m ensurepip \
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
+RUN pip3 install --upgrade wheel
 RUN pip3 install -r requirements.txt
 
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
