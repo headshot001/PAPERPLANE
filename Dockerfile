@@ -1,6 +1,15 @@
-FROM ubuntu:latest
+FROM alpine:edge
 
-RUN apt update && apt upgrade && apt-get -y install \
+RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
+RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
+
+# for additional packages
+apk --no-cache add ca-certificates wget
+wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.28-r0/glibc-2.28-r0.apk
+apk add glibc-2.28-r0.apk
+
+RUN apk add --no-cache --update \
     coreutils \
     bash \
     nodejs \
@@ -58,6 +67,7 @@ RUN python3 -m ensurepip \
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
+RUN pip3 install opencv-python
 RUN pip3 install -r requirements.txt
 
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
