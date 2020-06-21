@@ -50,35 +50,6 @@ RUN apk update && apk upgrade && apk --no-cache add \
   zlib-dev
 
 
-# Install NumPy
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h 
-
-# Install OpenCV
-RUN mkdir /opt && cd /opt && \
-  wget https://github.com/opencv/opencv/archive/3.2.0.zip && \
-  unzip 3.2.0.zip && rm 3.2.0.zip && \
-  wget https://github.com/opencv/opencv_contrib/archive/3.2.0.zip && \
-  unzip 3.2.0.zip && rm 3.2.0.zip \
-  && \
-  cd /opt/opencv-3.2.0 && mkdir build && cd build && \
-  cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_C_COMPILER=/usr/bin/clang \
-    -D CMAKE_CXX_COMPILER=/usr/bin/clang++ \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D INSTALL_PYTHON_EXAMPLES=OFF \
-    -D INSTALL_C_EXAMPLES=OFF \
-    -D WITH_FFMPEG=ON \
-    -D WITH_TBB=ON \
-    -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib-3.2.0/modules \
-    -D PYTHON_EXECUTABLE=/usr/local/bin/python \
-    .. \
-  && \
-  make -j$(nproc) && make install && cd .. && rm -rf build \
-  && \
-  cp -p $(find /usr/local/lib/python3.5/site-packages -name cv2.*.so) \
-   /usr/lib/python3.5/site-packages/cv2.so 
-
-
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
@@ -140,6 +111,34 @@ RUN python3 -m ensurepip \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
+
+# Install NumPy
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h 
+
+# Install OpenCV
+RUN mkdir /opt && cd /opt && \
+  wget https://github.com/opencv/opencv/archive/3.2.0.zip && \
+  unzip 3.2.0.zip && rm 3.2.0.zip && \
+  wget https://github.com/opencv/opencv_contrib/archive/3.2.0.zip && \
+  unzip 3.2.0.zip && rm 3.2.0.zip \
+  && \
+  cd /opt/opencv-3.2.0 && mkdir build && cd build && \
+  cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_C_COMPILER=/usr/bin/clang \
+    -D CMAKE_CXX_COMPILER=/usr/bin/clang++ \
+    -D CMAKE_INSTALL_PREFIX=/usr/local \
+    -D INSTALL_PYTHON_EXAMPLES=OFF \
+    -D INSTALL_C_EXAMPLES=OFF \
+    -D WITH_FFMPEG=ON \
+    -D WITH_TBB=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=/opt/opencv_contrib-3.2.0/modules \
+    -D PYTHON_EXECUTABLE=/usr/local/bin/python3 \
+    .. \
+  && \
+  make -j$(nproc) && make install && cd .. && rm -rf build \
+  && \
+  cp -p $(find /usr/local/lib/python3/site-packages -name cv2.*.so) \
+   /usr/lib/python3/site-packages/cv2.so 
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
