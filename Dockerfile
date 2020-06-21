@@ -59,7 +59,7 @@ RUN python3 -m ensurepip \
     if [[ ! -e /usr/bin/python ]]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
     rm -r /root/.cache
 
-RUN git clone https://github.com/janjongboom/alpine-opencv-docker.git && cd alpine-opencv-docker && mv opencv-prebuilt/cv2.so /usr/lib/python3.8/site-packages/cv2.so && mkdir /usr/local/include/opencv && mv opencv-prebuilt/include-opencv /usr/local/include/opencv && mkdir /usr/local/include/opencv2 && mv opencv-prebuilt/include-opencv2 /usr/local/include/opencv2 && mv opencv-prebuilt/local-lib/* /usr/local/lib/ && rm -rf alpine-opencv-docker
+RUN git clone https://github.com/janjongboom/alpine-opencv-docker.git && cd alpine-opencv-docker && mv opencv-prebuilt/cv2.so /usr/lib/python3.8/site-packages && mkdir /usr/local/include && mkdir /usr/local/include/opencv && mv opencv-prebuilt/include-opencv/* /usr/local/include/opencv && mkdir /usr/local/include/opencv2 && mv opencv-prebuilt/include-opencv2/* /usr/local/include/opencv2 && mv opencv-prebuilt/local-lib/* /usr/local/lib && cd .. && rm -rf alpine-opencv-docker
 RUN pip3 install opencv-python
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
