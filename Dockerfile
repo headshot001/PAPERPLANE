@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:latest
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories
@@ -12,8 +12,7 @@ RUN apk add --no-cache --update \
     nodejs \
     build-base \
     bzip2-dev \
-    curl \
-    py-pi \ 
+    curl \ 
     libpng-dev \ 
     openblas-dev \
     figlet \
@@ -21,7 +20,6 @@ RUN apk add --no-cache --update \
     g++ \
     git \
     aria2 \
-    gfortran \
     util-linux \
     libevent \
     jpeg-dev \
@@ -54,8 +52,6 @@ RUN apk add --no-cache --update \
     freetype-dev \
     redis \
     imagemagick
-
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
 
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
