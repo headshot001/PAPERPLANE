@@ -49,14 +49,9 @@ RUN apk update && apk upgrade && apk --no-cache add \
   unzip \
   zlib-dev
 
-# Python 3 as default
-RUN ln -s /usr/bin/python3 /usr/local/bin/python && \
-  ln -s /usr/bin/pip3 /usr/local/bin/pip && \
-  pip install --upgrade pip
 
 # Install NumPy
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h && \
-  pip install numpy
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h 
 
 # Install OpenCV
 RUN mkdir /opt && cd /opt && \
@@ -81,8 +76,7 @@ RUN mkdir /opt && cd /opt && \
   make -j$(nproc) && make install && cd .. && rm -rf build \
   && \
   cp -p $(find /usr/local/lib/python3.5/site-packages -name cv2.*.so) \
-   /usr/lib/python3.5/site-packages/cv2.so && \
-   python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
+   /usr/lib/python3.5/site-packages/cv2.so 
 
 
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
