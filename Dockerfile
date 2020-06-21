@@ -133,13 +133,12 @@ RUN mkdir /opt && cd /opt && \
     -D PYTHON_EXECUTABLE=/usr/local/bin/python3 \
     .. \
   && \
-  make -j$(nproc) && make install && cd .. && rm -rf build \
-  && \
-  mv /usr/local/lib/python3.8/site-packages/cv2.*.so) \
-   /usr/lib/cv2.so 
+  make -j$(nproc) && make install && cd .. && rm -rf build 
+  
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
+RUN pip3 install numpy 
 RUN pip3 install -r requirements.txt
 
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
