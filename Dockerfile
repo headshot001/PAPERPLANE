@@ -43,7 +43,6 @@ RUN apk add \
     chromium-chromedriver \
     zlib-dev \
     jpeg \
-    megatools \
     freetype-dev \
     redis \
     imagemagick
