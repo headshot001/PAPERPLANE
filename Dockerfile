@@ -1,4 +1,4 @@
-FROM petronetto/opencv-alpine
+FROM shosoar/alpine-python-opencv
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories
