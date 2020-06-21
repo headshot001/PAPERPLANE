@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM python:3-alpine3.7
 
 ENV CC=/usr/bin/clang \
     CXX=/usr/bin/clang++ \
