@@ -21,9 +21,9 @@ RUN apk update && apk upgrade && apk --no-cache add \
     libavcodec-dev \ 
     libavformat-dev \
     libswscale-dev \
-    python3-numpy 
-    libtbb2 
-    libtbb-dev 
+    python3-numpy \
+    libtbb2 \
+    libtbb-dev \
     libtiff-dev \
     libjasper-dev \
     libdc1394-22-dev \
