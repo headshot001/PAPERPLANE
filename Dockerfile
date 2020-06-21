@@ -1,9 +1,9 @@
-FROM python:3.7-alpine
+FROM python:3.7-alpine:latest
 
 RUN echo 'manylinux1_compatible = True' > /usr/local/lib/python3.7/site-packages/_manylinux.py
 RUN python -c 'import sys; sys.path.append(r"/_manylinux.py")'
 
-RUN apt update && apt upgrade && apt -y install \
+RUN apk add --no-cache --update \
     coreutils \
     bash \
     nodejs \
@@ -62,6 +62,7 @@ RUN python3 -m ensurepip \
 
 RUN git clone https://github.com/Ayush1311/PAPERPLANE.git -b master /app
 
+RUN pip3 install opencv-python
 RUN pip3 install -r requirements.txt
 
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
