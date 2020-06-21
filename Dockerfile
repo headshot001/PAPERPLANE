@@ -1,6 +1,3 @@
-FROM julianbei/alpine-opencv-microimage:p3-3.1
-RUN echo "FIRST STEP DONE"
-
 FROM alpine:edge
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
@@ -69,3 +66,6 @@ RUN pip3 install -r requirements.txt
 COPY ./sample_config.env ./userbot.session* ./config.env* ./client_secrets.json* ./secret.json* /app/
 
 CMD ["bash","init/start.sh"]
+
+FROM julianbei/alpine-opencv-microimage:p3-3.1
+RUN echo "ALL DONE"
