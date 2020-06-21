@@ -1,5 +1,12 @@
-FROM petronetto/opencv-alpine:latest as builder
-RUN python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
+from ubuntu:latest
+
+RUN apt update && apt upgrade && apt -y install \
+    redis \
+    bash \
+    gcc \
+    g++ \
+    git \
+    ffmpeg 
 
 FROM alpine:edge
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
