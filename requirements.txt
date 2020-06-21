@@ -40,4 +40,3 @@ heroku3
 bing_image_downloader
 numpy 
 mapper
-opencv-python
