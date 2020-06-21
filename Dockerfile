@@ -58,8 +58,7 @@ RUN apk add --no-cache --update \
     redis \
     imagemagick
 
-COPY --from=builder ./
-RUN python3 -c 'import cv2; print("Python: import cv2 - SUCCESS")'
+
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
 
