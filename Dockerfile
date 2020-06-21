@@ -1,4 +1,4 @@
-FROM jjanzic/docker-python3-opencv
+FROM julianbei/alpine-opencv-microimage:p3-3.1
 RUN echo "FIRST STEP DONE"
 
 FROM alpine:edge
