@@ -2,7 +2,6 @@ FROM alpine:3.4
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories
-RUN apk --no-cache --update-cache add gcc gfortran python python-dev py-pip build-base wget freetype-dev libpng-dev openblas-dev
 RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
@@ -15,11 +14,15 @@ RUN apk add --no-cache --update \
     build-base \
     bzip2-dev \
     curl \
+    py-pi \ 
+    libpng-dev \ 
+    openblas-dev \
     figlet \
     gcc \
     g++ \
     git \
     aria2 \
+    gfortran \
     util-linux \
     libevent \
     jpeg-dev \
