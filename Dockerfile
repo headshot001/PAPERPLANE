@@ -1,7 +1,8 @@
 FROM petronetto/opencv-alpine:latest as builder
-python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
+RUN python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
 
 FROM alpine:edge
+RUN python -c 'import cv2; print("Python: import cv2 - SUCCESS")'
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 RUN apk add --no-cache --update \
