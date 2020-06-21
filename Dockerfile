@@ -2,7 +2,6 @@ FROM alpine:3.4
 
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/main" > /etc/apk/repositories
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/latest-stable/community" >> /etc/apk/repositories
-RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
 RUN sed -e 's;^#http\(.*\)/edge/community;http\1/edge/community;g' -i /etc/apk/repositories
 RUN echo 'http://dl-cdn.alpinelinux.org/alpine/edge/testing' >> /etc/apk/repositories
 
@@ -56,6 +55,7 @@ RUN apk add --no-cache --update \
     redis \
     imagemagick
 
+RUN ln -s /usr/include/locale.h /usr/include/xlocale.h
 
 ENV PATH="/app/bin:$PATH"
 WORKDIR /app
