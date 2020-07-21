@@ -27,7 +27,7 @@ async def autopic(event):
         photo = "./new_photo.png"
         shutil.copy(downloaded_file_name, photo)
         LT = datetime.datetime.now(pytz.timezone('Asia/Kolkata'))
-        OT = LT.strftime("root@kali:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True :\n\n...     print(' ',localtime)\n\n...     print(' ','HAVE A NICE DAY !')\n\n...     sleep(60)\n\n...else :\n\n...     return\n\n>>> %d.%m.%y %H:%M\n\n>>> HAVE A NICE DAY !")
+        OT = LT.strftime("root@ayush:~# python3\n\n>>>import datetime\n\n>>>localtime = datetime.datetime.now()\n\n>>>while True :\n\n...     print(' ',localtime)\n\n...     print(' ','HAVE A NICE DAY !')\n\n...     sleep(60)\n\n...else :\n\n...     return\n\n>>> %d.%m.%y %H:%M\n\n>>> HAVE A NICE DAY !")
         img = Image.open(photo)
         drawn_text = ImageDraw.Draw(img)
         fnt = ImageFont.truetype(FONT_FILE_TO_USE, 25)
